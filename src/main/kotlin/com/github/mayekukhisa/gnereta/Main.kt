@@ -30,12 +30,22 @@ class GneretaCommand : CliktCommand(
    override fun run() {
       if (version) {
          echo(VERSION)
-         throw ProgramResult(0)
+         exit()
       }
    }
 
    companion object {
       const val VERSION = "1.0.0-snapshot"
+
+      /**
+       * Terminates the currently running process.
+       *
+       * @param status The exit code.
+       * @throws ProgramResult
+       */
+      fun exit(status: Int = 0) {
+         throw ProgramResult(status)
+      }
    }
 }
 
