@@ -21,8 +21,6 @@ import com.github.ajalt.clikt.core.ProgramResult
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.mayekukhisa.gnereta.model.TemplatesCatalog
-import kotlinx.serialization.json.Json
-import org.apache.commons.io.IOUtils
 
 class GneretaCommand : CliktCommand(
    help = "A project generator tool",
@@ -63,12 +61,9 @@ class GneretaCommand : CliktCommand(
 
       init {
          // Read catalog for available templates
-         val jsonString = IOUtils.resourceToString(
-            "templates/catalog.json",
-            Charsets.UTF_8,
-            this::class.java.classLoader
-         )
-         val catalog = Json.decodeFromString(TemplatesCatalog.serializer(), jsonString)
+         val catalog = Utils.parseJson(TemplatesCatalog.serializer()) {
+            Utils.resToString("templates/catalog.json")
+         }
          templates = catalog.entries
       }
 
