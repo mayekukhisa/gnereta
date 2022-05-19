@@ -16,17 +16,35 @@
 
 package com.github.mayekukhisa.gnereta
 
-import com.github.ajalt.clikt.core.ProgramResult
+import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.NoSuchOption
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-internal class GneretaCommandTest : BaseCommandTest() {
-   override val classUnderTest = GneretaCommand()
+internal abstract class BaseCommandTest {
+   private val stdout = System.out
+   val tempStdout = ByteArrayOutputStream()
+
+   abstract val classUnderTest: CliktCommand
+
+   @BeforeTest
+   fun setUP() {
+      System.setOut(PrintStream(tempStdout))
+   }
 
    @Test
-   fun `test version`() {
-      assertFailsWith<ProgramResult> { classUnderTest.parse(arrayOf("--version")) }
-      assertEquals("1.0.0-snapshot", tempStdout.toString().trim())
+   open fun `test invalid args`() {
+      assertFailsWith<NoSuchOption> {
+         classUnderTest.parse(arrayOf("--invalid-option"))
+      }
+   }
+
+   @AfterTest
+   fun tearDown() {
+      System.setOut(stdout)
    }
 }
