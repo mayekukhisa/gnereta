@@ -4,7 +4,7 @@ Gnereta is a command-line tool for creating new projects fast and with ease.
 
 ## Features
 
-> **Note:** There are currently no features yet. This tool is in its early stages of development.
+-  Create blank projects.
 
 ## Getting started
 
