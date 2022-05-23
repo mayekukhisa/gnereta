@@ -34,6 +34,7 @@ repositories {
 dependencies {
    implementation("com.github.ajalt.clikt:clikt:3.4.2")
    implementation("commons-io:commons-io:2.11.0")
+   implementation("org.freemarker:freemarker:2.3.31")
    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
    testImplementation(kotlin("test"))

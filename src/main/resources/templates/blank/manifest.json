@@ -1,0 +1,16 @@
+{
+   "texts": [
+      {
+         "dest": "${projectDir}/.vscode/settings.json",
+         "src": "common/config/editor/vscode.ftl"
+      },
+      {
+         "dest": "${projectDir}/.editorconfig",
+         "src": "common/config/editor/base.ftl"
+      },
+      {
+         "dest": "${projectDir}/.gitattributes",
+         "src": "common/config/git/attributes.ftl"
+      }
+   ]
+}

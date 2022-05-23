@@ -16,26 +16,18 @@
 
 package com.github.mayekukhisa.gnereta
 
-import com.github.ajalt.clikt.core.ProgramResult
-import com.github.ajalt.clikt.core.UsageError
+import com.github.ajalt.clikt.core.BadParameterValue
 import kotlin.test.Test
-import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-internal class GneretaCommandTest : BaseCommandTest() {
-   override val classUnderTest = GneretaCommand()
+internal class CreateCommandTest : BaseCommandTest() {
+   override val classUnderTest = CreateCommand()
 
    @Test
-   override fun `test invalid args`() {
-      super.`test invalid args`()
-      assertFailsWith<UsageError> {
-         classUnderTest.parse(arrayOf("invalid-subcommand"))
+   fun `test invalid templates`() {
+      assertFailsWith<BadParameterValue> {
+         val args = arrayOf("--template", "invalid-template", "dummy-path")
+         classUnderTest.parse(args)
       }
-   }
-
-   @Test
-   fun `test version`() {
-      assertFailsWith<ProgramResult> { classUnderTest.parse(arrayOf("--version")) }
-      assertEquals("1.0.0-snapshot", tempStdout.toString().trim())
    }
 }
