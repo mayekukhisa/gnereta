@@ -20,6 +20,7 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
+import com.github.mayekukhisa.gnereta.model.Template
 import com.github.mayekukhisa.gnereta.model.TemplatesCatalog
 
 class GneretaCommand : CliktCommand(
@@ -41,7 +42,7 @@ class GneretaCommand : CliktCommand(
                exit()
             }
 
-            templates.forEach { template -> echo(template) }
+            templates.forEach { template -> echo(template.name) }
             exit()
          }
          version -> {
@@ -57,7 +58,7 @@ class GneretaCommand : CliktCommand(
       /**
        * The list of available templates.
        */
-      val templates: List<String>
+      val templates: List<Template>
 
       init {
          // Read catalog for available templates

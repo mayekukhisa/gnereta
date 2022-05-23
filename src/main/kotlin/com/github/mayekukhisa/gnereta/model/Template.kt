@@ -19,6 +19,6 @@ package com.github.mayekukhisa.gnereta.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TemplatesCatalog(
-   val entries: List<Template>,
+data class Template(
+   val name: String,
 )
